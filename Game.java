@@ -47,13 +47,13 @@ public class Game
         salida = new Room("Libre!");
 
         // initialise room exits // n e s o
-        almacen.setExits(null, zonaDeArmas, null, chozas);
-        zonaDeArmas.setExits(null, comedor, casaDelJefe, almacen);
-        comedor.setExits(null, salida, salida, zonaDeArmas);
-        casaDelJefe.setExits(zonaDeArmas, null, null, salida);
-        chozas.setExits(null, almacen, granja, null);
-        granja.setExits(chozas, null, aparcamiento, null);
-        aparcamiento.setExits(granja, null, salida, null);
+        almacen.setExits(null, zonaDeArmas, null, chozas, casaDelJefe);
+        zonaDeArmas.setExits(null, comedor, casaDelJefe, almacen, null);
+        comedor.setExits(null, salida, salida, zonaDeArmas, null);
+        casaDelJefe.setExits(zonaDeArmas, null, null, salida, null);
+        chozas.setExits(null, almacen, granja, null, null);
+        granja.setExits(chozas, null, aparcamiento, null, null);
+        aparcamiento.setExits(granja, null, salida, null, null);
 
         currentRoom = almacen;  // start game almacenz
     }
@@ -161,7 +161,9 @@ public class Game
         if(direction.equals("west")) {
             nextRoom = currentRoom.westExit;
         }
-
+        if(direction.equals("southEast")){
+            nextRoom = currentRoom.southEastExit;
+        }
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
@@ -201,6 +203,9 @@ public class Game
         }
         if(currentRoom.westExit != null) {
             System.out.print("west ");
+        }
+        if(currentRoom.southEastExit != null) {
+            System.out.print("southEast ");
         }
         System.out.println();
     }
