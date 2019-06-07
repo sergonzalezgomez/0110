@@ -45,7 +45,7 @@ public class Game
         granja = new Room("en la granja");
         aparcamiento = new Room("en el aparcamiento");
         salida = new Room("Libre!");
-        
+
         //room exit
         almacen.setExit("east", zonaDeArmas);
         almacen.setExit("west", chozas);
@@ -133,6 +133,9 @@ public class Game
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         }
+        else if (commandWord.equals("look")) {	
+            look();
+        }
 
         return wantToQuit;
     }
@@ -169,7 +172,7 @@ public class Game
 
         // Try to leave current room.
         Room nextRoom = currentRoom.getExit(direction);
-        
+
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
@@ -198,5 +201,9 @@ public class Game
     private void printLocationInfo(){
         System.out.print(currentRoom.getLongDescription());
         System.out.println();
+    }
+
+    private void look() {	
+        System.out.println(currentRoom.getLongDescription());
     }
 }
