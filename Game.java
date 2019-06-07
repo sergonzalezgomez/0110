@@ -45,6 +45,26 @@ public class Game
         granja = new Room("en la granja");
         aparcamiento = new Room("en el aparcamiento");
         salida = new Room("Libre!");
+        
+        //room exit
+        almacen.setExit("east", zonaDeArmas);
+        almacen.setExit("west", chozas);
+        almacen.setExit("southEast", casaDelJefe);
+        chozas.setExit("east", almacen);
+        chozas.setExit("south", granja);
+        granja.setExit("north", chozas);
+        granja.setExit("south", aparcamiento);
+        aparcamiento.setExit("north", granja);
+        aparcamiento.setExit("south", salida);
+        zonaDeArmas.setExit("west", almacen);
+        zonaDeArmas.setExit("south", casaDelJefe);
+        zonaDeArmas.setExit("east", comedor);
+        casaDelJefe.setExit("north", zonaDeArmas);
+        casaDelJefe.setExit("northWest", almacen);
+        casaDelJefe.setExit("northEast", almacen);
+        comedor.setExit("west", zonaDeArmas);
+        comedor.setExit("south", salida);
+        comedor.setExit("east", salida);
 
         // initialise room exits // n e s o
         almacen.setExits(null, zonaDeArmas, null, chozas, casaDelJefe, null);
