@@ -47,13 +47,13 @@ public class Game
         salida = new Room("Libre!");
 
         // initialise room exits // n e s o
-        almacen.setExits(null, zonaDeArmas, null, chozas, casaDelJefe);
-        zonaDeArmas.setExits(null, comedor, casaDelJefe, almacen, null);
-        comedor.setExits(null, salida, salida, zonaDeArmas, null);
-        casaDelJefe.setExits(zonaDeArmas, null, null, salida, null);
-        chozas.setExits(null, almacen, granja, null, null);
-        granja.setExits(chozas, null, aparcamiento, null, null);
-        aparcamiento.setExits(granja, null, salida, null, null);
+        almacen.setExits(null, zonaDeArmas, null, chozas, casaDelJefe, null);
+        zonaDeArmas.setExits(null, comedor, casaDelJefe, almacen, null, null);
+        comedor.setExits(null, salida, salida, zonaDeArmas, null, null);
+        casaDelJefe.setExits(zonaDeArmas, null, null, salida, null, almacen);
+        chozas.setExits(null, almacen, granja, null, null, null);
+        granja.setExits(chozas, null, aparcamiento, null, null, null);
+        aparcamiento.setExits(granja, null, salida, null, null, null);
 
         currentRoom = almacen;  // start game almacenz
     }
