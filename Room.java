@@ -26,7 +26,7 @@ public class Room
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description) 
+    public Room(String description, Item item) 
     {
         this.description = description;
         exits = new HashMap<>();
@@ -99,6 +99,8 @@ public class Room
      * @return Una descripcion de la habitacion incluyendo sus salidas
      */
     public String getLongDescription(){
-        return "You are " + description + "\n" + getExitString();
+        return "You are " + description + "\n" + getExitString() + "\n";
     }
+    
+    
 }

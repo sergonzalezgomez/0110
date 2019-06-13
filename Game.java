@@ -1,3 +1,4 @@
+
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -19,6 +20,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private Item objetoPocion;
 
     /**
      * Create the game and initialise its internal map.
@@ -35,17 +37,18 @@ public class Game
     private void createRooms()
     {
         Room almacen, zonaDeArmas, comedor, casaDelJefe, chozas, granja, aparcamiento, salida;
-
+        Item objetoPocion;
         // create the rooms
-        almacen = new Room("en entrada del Almacén");
-        zonaDeArmas = new Room("en la zona de armas");
-        comedor = new Room("en el comedor");
-        casaDelJefe = new Room("en la casa del jefe");
-        chozas = new Room("en las chozas");
-        granja = new Room("en la granja");
-        aparcamiento = new Room("en el aparcamiento");
-        salida = new Room("Libre!");
-
+        objetoPocion = new Item();
+        almacen = new Room("en entrada del Almacén",  objetoPocion);
+        zonaDeArmas = new Room("en la zona de armas",null);
+        comedor = new Room("en el comedor", null);
+        casaDelJefe = new Room("en la casa del jefe", objetoPocion);
+        chozas = new Room("en las chozas", objetoPocion);
+        granja = new Room("en la granja", null);
+        aparcamiento = new Room("en el aparcamiento", null);
+        salida = new Room("Libre!", null);
+        
         //room exit
         almacen.setExit("east", zonaDeArmas);
         almacen.setExit("west", chozas);
@@ -202,7 +205,7 @@ public class Game
     }
 
     private void printLocationInfo(){
-        System.out.print(currentRoom.getLongDescription());
+        System.out.print(currentRoom.getLongDescription() + " " + getDescripiconObjeto());
         System.out.println();
     }
 
@@ -212,5 +215,14 @@ public class Game
 
     private void eat() {   
         System.out.println("You have eaten now and you are not hungry any more");
+    }
+    
+    public String getDescripiconObjeto(){
+        String cadena = "";
+        if(objetoPocion != null){
+            cadena = "Has encontrado una " + objetoPocion.getItemDescription() + " de peso " + 
+            objetoPocion.getItemWeight() + " en esta sala!";
+        }
+        return cadena;
     }
 }
